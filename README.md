@@ -61,7 +61,7 @@ Ideally, you wouldn't need an `oauth3.json` because you would be using the OAuth
 Backwards Compatibility
 --------
 
-But because we have facebook and others that adhere to no standard and aren't going to put any redirects on their servers in our behalf, the file might look more like this:
+But because there are many well-established providers out in the wild that have no standard to adhere to, as well as special circumstances dictating various locations of API, Session, and Asset serversl, the file might look more like this:
 
 ```javascript
 { "authorization_dialog": {
