@@ -3,9 +3,9 @@ The OAuth3 Specification
 
 * summary
 * security
-* oauth3.json
-* oauth3.html
-* reserved scope
+* [oauth3.json](#oauth3.html)
+* [oauth3.html](#oauth3.html)
+* [reserved scope](#reserved-scope)
 
 One of the goals of OAuth3 is to maintain backwards compatible with OAuth2 such that any OAuth2 provider can easily become an OAuth3 provider.
 
