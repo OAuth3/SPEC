@@ -84,3 +84,15 @@ Explanation
 -----------
 
 * `oauthn_socpe` should be an empty string, but for systems like Google+'s OAuth2 implementation, it is the minimal scope required to allow the app to log the user in and get an `app_scoped_id`.
+
+
+Reserved Scope
+==============
+
+* `*` is reserved for *all permissions*. This is useful for:
+  * the provider issues a token to its own frontend (i.e. JWT, other cookieless sessions)
+  * one provider is requesting an account takeover from another provider (i.e. migrating from gmail to yahoo)
+* `!` is reserved as a scope which may not be granted. This is useful for:
+  * user switching
+  * debugging your permissions dialog by causing it to popup every time
+* `oauth3_` anything prefixed with `oauth3_` is reserved for future use.
