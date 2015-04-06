@@ -1,6 +1,12 @@
 # SPEC
 The OAuth3 Specification
 
+* summary
+* security
+* oauth3.json
+* oauth3.html
+* reserved scope
+
 One of the goals of OAuth3 is to maintain backwards compatible with OAuth2 such that any OAuth2 provider can easily become an OAuth3 provider.
 
 Another one of the goals is to standardize OAuth3 in such a way that it is useful for "the nexternet", the "peer web" - a federated, delegated internet that functions more like email - more like it would have if we had always-on internet instead of dailup back in the days when email systems wanted you to download your data so they could delete it.
