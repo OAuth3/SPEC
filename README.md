@@ -3,8 +3,8 @@ The OAuth3 Specification
 
 * summary
 * security
-* [oauth3.json](#oauth3.json)
-* [oauth3.html](#oauth3.html)
+* [oauth3.json](#oauth3json)
+* [oauth3.html](#oauth3html)
   * `response_type=directive`
 * [reserved scope](#reserved-scope)
 
