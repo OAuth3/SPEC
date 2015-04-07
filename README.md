@@ -3,8 +3,9 @@ The OAuth3 Specification
 
 * summary
 * security
-* [oauth3.json](#oauth3.html)
+* [oauth3.json](#oauth3.json)
 * [oauth3.html](#oauth3.html)
+  * `response_type=directive`
 * [reserved scope](#reserved-scope)
 
 One of the goals of OAuth3 is to maintain backwards compatible with OAuth2 such that any OAuth2 provider can easily become an OAuth3 provider.
@@ -91,6 +92,25 @@ Explanation
 
 * `oauthn_socpe` should be an empty string, but for systems like Google+'s OAuth2 implementation, it is the minimal scope required to allow the app to log the user in and get an `app_scoped_id`.
 
+oauth3.html
+===========
+
+This file must live at the user endpoint, such as facebook.com/oauth3.html or johndoe.awesome.com/oauth3.html.
+
+It facilitates communication between the provider and the consumer.
+
+### Directive Autodiscovery Strategy
+
+`GET https://example.com/oauth3.html?response_type=directive&state=1234&redirect_uri=<<REDIRECT_URI>>`
+where `redirect_uri` may be `encodeURIComponent('https://myapp.com/oauth3.html?callback=onOauth3Directive')`
+
+In the case that CORS is not available, this strategy allows using oauth3.html to retrieve oauth3.json and pass it back via url or post message.
+
+The consumer's `oauth3.html` should be able to negotiate with the provider `oauth3.html` and simply callback into the main application without any concern on the developer's part.
+
+Likewise, this could be a faster method of retrieving endpoints without CORS. I know that CORS is awesome, but for the purposes of widespread adoption, it may be best to leave all of the data retrieval magic up to window.postMessage since that doesn't require server configuration and it works all the way back to MSIE8.
+
+Hmmm... the balance between doing things "the right way" and "the easy way"... I guess it will come down to what "Just Works"(TM) for the most people
 
 Reserved Scope
 ==============
