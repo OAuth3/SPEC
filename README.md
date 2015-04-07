@@ -102,3 +102,22 @@ Reserved Scope
   * user switching
   * debugging your permissions dialog by causing it to popup every time
 * `oauth3_` anything prefixed with `oauth3_` is reserved for future use.
+
+scope types
+===========
+
+Just in the thought stage here.
+
+Standardized scopes might look something like this:
+
+`oauth3_messages_rwx`
+
+* read i.e. The app can read my messages
+* write i.e. The app can write messages to me
+* execute i.e. The app can write messages to others as me
+
+`oauth3_friends_rwx`
+
+* read i.e. The app can read friends list
+* write i.e. The app can add me as a friend (or accept friends?)
+* execute i.e. The app can add friend others as me
