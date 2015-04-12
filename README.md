@@ -119,8 +119,12 @@ Reserved Scope
   * the provider issues a token to its own frontend (i.e. JWT, other cookieless sessions)
   * one provider is requesting an account takeover from another provider (i.e. migrating from gmail to yahoo)
 * `!` is reserved as a scope which may not be granted. This is useful for:
-  * user switching
+  * optional user switching
   * debugging your permissions dialog by causing it to popup every time
+* `+` is reserved for *additive user switching*
+  * user switching (add a login)
+* `^` is reserved for *strict user switching*
+  * user switching (replace current login)
 * `oauth3_` anything prefixed with `oauth3_` is reserved for future use.
 
 scope types
