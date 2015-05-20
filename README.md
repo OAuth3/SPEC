@@ -34,7 +34,7 @@ regardless of the fact that the API lives at `graph.facebook.com/api/v2`.
   * **should** be hosted on the bare domain, not redirected the `www.`
     * (but **may** be redirected if you're not technically competent enough to figure out how to make that work)
 
-If the provider is not technically competent enough to provide an `oauth3.json`, `https://oauth3.org/providers/example.com/oauth3.json` may host such file on their behanlf.
+If the provider is not technically competent enough to provide an `oauth3.json`, `https://oauth3.org/providers/example.com/oauth3.json` may host such file on their behalf.
 
 **TODO** since this can be delegated and federated there will be a way to specify something like one of these:
   * `username@provider.com`
@@ -90,7 +90,7 @@ But because there are many well-established providers out in the wild that have 
 Explanation
 -----------
 
-* `oauthn_socpe` should be an empty string, but for systems like Google+'s OAuth2 implementation, it is the minimal scope required to allow the app to log the user in and get an `app_scoped_id`.
+* `authn_scope` should be an empty string, but for systems like Google+'s OAuth2 implementation, it is the minimal scope required to allow the app to log the user in and get an `app_scoped_id`.
 
 oauth3.html
 ===========
