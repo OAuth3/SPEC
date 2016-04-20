@@ -199,18 +199,33 @@ References
 
   * [OIDC ID Token Spec](http://openid.net/specs/openid-connect-core-1_0.html#IDToken)
   * [ID Tokens Explained Simply](https://www.tbray.org/ongoing/When/201x/2013/04/04/ID-Tokens)
+  * http://developer.okta.com/docs/api/resources/oidc
 
 Draft Brief
 
 There are generally 2-4 parties involved in issuing, using, and validating a token: the api that signs with the private key (the oauth3.org, auth0, stormpath, or self-hosted), the client app (static assets, mobile app), the resource manager (facebook), and the user (providing credentials and permissions to warrant issuence).
+
+#### Parties
 
 * `iss` - issuer (token signer), holder of private keys, signer of tokens (api or potentially device), location from which to fetch public keys for validation (this is often also the provider - facebook, the twitter, the api.daplie.com, but it could be the auth0, the stormpath, the oauth3.org, the self-hosted signer)
 * `sub` - subject, (token authorizer, user/device account(s)). OIDC seems to (mistakenly) assume that credentials are linked to exactly one account (unlike Google, Facebook, etc), so we have to figure out how to work around that constraint - maybe using comma-separated list, maybe restricting multiple accounts to internal implementation per-provider and standardizing only one-account per token
 * `aud` - audience, (token receiver) fetcher of public keys, validater of tokens
 * `azp` - authorized party, (token sender) supplier of credentials, local storer of tokens (i.e. client app (`origin`s, `referer`s), mobile app)
 
+Again
+
+* It's the `audience` if it needs to validate a token (typically to provide a resource or service)
+* It's the `subject` if it is the owner (person or device), which grants permissions, identified by an non-changing account id (encrypted or not encrypted?).
+* It's the `issuer` if it signs the token with the private key (or potentially if it delegates signing authority, but is still reachable for public key validation)
+* It's the `authorized party` if it holds tokens on behalf of the user (or device) and sends them out to the `audience`s
+
 Draft Examples
 
 * `iss` - issuer, the cname referring to the origin of the private key (and often where public keys can be found to verify the signature)
   * generally `api.example.com` would be the issuer for the app hosted at `example.com`
   * if a 3rd party partner is allowed to use private key to sign on behalf of the 1st party, the 1st party is still the issuer (i.e. perhaps you use allow api.partner.com to sign with api.example.com keys). However, if the 1st party does not sign at all (it has no private key on premise and perhaps manages static resources only), then the 3rd party would be the issuer.
+
+#### Metadata
+
+* `auth_time` - almost always relevant for "natural users" (humans) - when the user last used their credentials
+* `amr` - authentication modes - an array of stuff like passphrase, Authenticator, opt via email, otp via sms or phone, etc
