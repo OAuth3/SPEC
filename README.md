@@ -189,3 +189,22 @@ www.clickbait.com can use token to communicate with api.clickbait.com
 
 
 ### Implicit Grant
+
+
+### Token Definitions
+
+I've gotta check in with the OIDC (OpenID Connect) folks, but I think this is how OAuth3 should define the JWT keys.
+
+Draft Brief
+
+There are generally 2-4 parties involved in issuing, using, and validating a token: the api that signs with the private key (the oauth3.org, auth0, stormpath, or self-hosted), the client app (static assets, mobile app), the resource manager (facebook), and the user (providing credentials and permissions to warrant issuence).
+
+* `iss` - issuer, holder of private keys, signer of tokens (api or potentially device), location from which to fetch private keys
+* `aud` - audience, fetcher of public keys, validater of tokens - 
+* `sub` - subject, supplier of credentials, storer of tokens - client app (`origin`s, `referer`s), mobile app
+
+Draft Examples
+
+* `iss` - issuer, the cname referring to the origin of the private key (and often where public keys can be found to verify the signature)
+  * generally `api.example.com` would be the issuer for the app hosted at `example.com`
+  * if a 3rd party partner is allowed to use private key to sign on behalf of the 1st party, the 1st party is still the issuer (i.e. perhaps you use allow api.partner.com to sign with api.example.com keys). However, if the 1st party does not sign at all (it has no private key on premise and perhaps manages static resources only), then the 3rd party would be the issuer.
