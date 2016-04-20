@@ -1,5 +1,8 @@
 # SPEC
+
 The OAuth3 Specification
+
+Where possible, oauth3 should behave as a strict superset of OIDC (which we didn't know about when we started this). All variations should be noted, and fixed if possible.
 
 * summary
 * security
@@ -208,7 +211,7 @@ There are generally 2-4 parties involved in issuing, using, and validating a tok
 #### Parties
 
 * `iss` - issuer (token signer), holder of private keys, signer of tokens (api or potentially device), location from which to fetch public keys for validation (this is often also the provider - facebook, the twitter, the api.daplie.com, but it could be the auth0, the stormpath, the oauth3.org, the self-hosted signer)
-* `sub` - subject, (token authorizer, user/device account(s)). OIDC seems to (mistakenly) assume that credentials are linked to exactly one account (unlike Google, Facebook, etc), so we have to figure out how to work around that constraint - maybe using comma-separated list, maybe restricting multiple accounts to internal implementation per-provider and standardizing only one-account per token
+* `sub` - subject, (natural user, token authorizer), a Pairwise Pseudonymous Identifier (PPID) for user/device account(s)). OIDC seems to (mistakenly) assume that credentials are linked to exactly one account (unlike Google, Facebook, etc), so we have to figure out how to work around that constraint - maybe using comma-separated list, maybe restricting multiple accounts to internal implementation per-provider and standardizing only one-account per token
 * `aud` - audience, (token receiver) fetcher of public keys, validater of tokens
 * `azp` - authorized party, (token sender) supplier of credentials, local storer of tokens (i.e. client app (`origin`s, `referer`s), mobile app)
 
