@@ -199,7 +199,7 @@ Draft Brief
 
 There are generally 2-4 parties involved in issuing, using, and validating a token: the api that signs with the private key (the oauth3.org, auth0, stormpath, or self-hosted), the client app (static assets, mobile app), the resource manager (facebook), and the user (providing credentials and permissions to warrant issuence).
 
-* `iss` - issuer, holder of private keys, signer of tokens (api or potentially device), location from which to fetch private keys
+* `iss` - issuer, holder of private keys, signer of tokens (api or potentially device), location from which to fetch public keys for validation
 * `aud` - audience, fetcher of public keys, validater of tokens - 
 * `sub` - subject, supplier of credentials, storer of tokens - client app (`origin`s, `referer`s), mobile app
 
