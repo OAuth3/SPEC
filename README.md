@@ -195,13 +195,19 @@ www.clickbait.com can use token to communicate with api.clickbait.com
 
 I've gotta check in with the OIDC (OpenID Connect) folks, but I think this is how OAuth3 should define the JWT keys.
 
+References
+
+  * [OIDC ID Token Spec](http://openid.net/specs/openid-connect-core-1_0.html#IDToken)
+  * [ID Tokens Explained Simply](https://www.tbray.org/ongoing/When/201x/2013/04/04/ID-Tokens)
+
 Draft Brief
 
 There are generally 2-4 parties involved in issuing, using, and validating a token: the api that signs with the private key (the oauth3.org, auth0, stormpath, or self-hosted), the client app (static assets, mobile app), the resource manager (facebook), and the user (providing credentials and permissions to warrant issuence).
 
-* `iss` - issuer, holder of private keys, signer of tokens (api or potentially device), location from which to fetch public keys for validation
-* `aud` - audience, fetcher of public keys, validater of tokens - 
-* `sub` - subject, supplier of credentials, storer of tokens - client app (`origin`s, `referer`s), mobile app
+* `iss` - issuer (token signer), holder of private keys, signer of tokens (api or potentially device), location from which to fetch public keys for validation (this is often also the provider - facebook, the twitter, the api.daplie.com, but it could be the auth0, the stormpath, the oauth3.org, the self-hosted signer)
+* `sub` - subject, (token authorizer, user/device account(s)). OIDC seems to (mistakenly) assume that credentials are linked to exactly one account (unlike Google, Facebook, etc), so we have to figure out how to work around that constraint - maybe using comma-separated list, maybe restricting multiple accounts to internal implementation per-provider and standardizing only one-account per token
+* `aud` - audience, (token receiver) fetcher of public keys, validater of tokens
+* `azp` - authorized party, (token sender) supplier of credentials, local storer of tokens (i.e. client app (`origin`s, `referer`s), mobile app)
 
 Draft Examples
 
